@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\buildMultiTargeting\ApiReto.props" />
+  <Import Project="../buildMultiTargeting/ApiReto.props" />
 </Project>
