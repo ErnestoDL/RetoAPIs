@@ -10,7 +10,7 @@ namespace ApiReto.Controllers
     public class CharlarController : ControllerBase
     {
         private const string ConnectionString =
-            "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=root;";
+            "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=Hemaan,33;";
 
         [HttpGet]
         public ActionResult<IEnumerable<Charlar>> GetAllCharlas()
