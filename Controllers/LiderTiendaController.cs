@@ -7,51 +7,51 @@ namespace ApiReto.Controllers;
 
 
 
- [Route("[controller]")]
+[Route("[controller]")]
 
 public class LiderTiendaController : ControllerBase
 {
-    public string ConnectionString ="Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=Hemaan,33;";
+    public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=Hemaan,33;";
 
 
-[HttpGet("{idUsuario}")]
-        public ActionResult<LiderTienda> GetLider(int idUsuario)
+    [HttpGet("{idUsuario}")]
+    public ActionResult<LiderTienda> GetLider(int idUsuario)
+    {
+        LiderTienda lider = null;
+
+        using (var conexion = new MySqlConnection(ConnectionString))
         {
-            LiderTienda lider = null;
-
-            using (var conexion = new MySqlConnection(ConnectionString))
-            {
-                conexion.Open();
-                string query = @"
+            conexion.Open();
+            string query = @"
                     SELECT ID_LiderTienda, ID_Usuario, Nivel, Diamantes
                     FROM lidertienda 
                     WHERE ID_Usuario = @id";
 
-                using (var cmd = new MySqlCommand(query, conexion))
-                {
-                    cmd.Parameters.AddWithValue("@id", idUsuario);
+            using (var cmd = new MySqlCommand(query, conexion))
+            {
+                cmd.Parameters.AddWithValue("@id", idUsuario);
 
-                    using (var reader = cmd.ExecuteReader())
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        lider = new LiderTienda
                         {
-                            lider = new LiderTienda
-                            {
-                                ID_LiderTienda = Convert.ToInt32(reader["ID_LiderTienda"]),
-                                ID_Usuario     = Convert.ToInt32(reader["ID_Usuario"]),
-                                Nivel          = Convert.ToInt32(reader["Nivel"]),
-                                Diamantes      = Convert.ToInt32(reader["Diamantes"]),
-                            };
-                        }
+                            ID_LiderTienda = Convert.ToInt32(reader["ID_LiderTienda"]),
+                            ID_Usuario = Convert.ToInt32(reader["ID_Usuario"]),
+                            Nivel = Convert.ToInt32(reader["Nivel"]),
+                            Diamantes = Convert.ToInt32(reader["Diamantes"]),
+                        };
                     }
                 }
             }
-
-            if (lider == null)
-                return NotFound();
-
-            return Ok(lider);
         }
+
+        if (lider == null)
+            return NotFound();
+
+        return Ok(lider);
+    }
     // GET /LiderTienda/top5
     [HttpGet("top5")]
     public ActionResult<List<object>> GetTop5Lideres()
@@ -92,13 +92,13 @@ public class LiderTiendaController : ControllerBase
 
         return Ok(listaTop5);
     }
-[HttpGet("rank/{idUsuario}")]
-public ActionResult<object> GetRank(int idUsuario)
-{
-    using (var conexion = new MySqlConnection(ConnectionString))
+    [HttpGet("rank/{idUsuario}")]
+    public ActionResult<object> GetRank(int idUsuario)
     {
-        conexion.Open();
-        string query = @"
+        using (var conexion = new MySqlConnection(ConnectionString))
+        {
+            conexion.Open();
+            string query = @"
             SELECT ID_Usuario, Diamantes, Posicion
             FROM (
               SELECT 
@@ -109,58 +109,58 @@ public ActionResult<object> GetRank(int idUsuario)
             ) AS ranking
             WHERE ID_Usuario = @id;";
 
-        using (var cmd = new MySqlCommand(query, conexion))
-        {
-            cmd.Parameters.AddWithValue("@id", idUsuario);
-
-            using (var reader = cmd.ExecuteReader())
+            using (var cmd = new MySqlCommand(query, conexion))
             {
-                if (reader.Read())
-                {
-                    var resultado = new
-                    {
-                        ID_Usuario = Convert.ToInt32(reader["ID_Usuario"]),
-                        Diamantes = Convert.ToInt32(reader["Diamantes"]),
-                        Posicion = Convert.ToInt32(reader["Posicion"])
-                    };
+                cmd.Parameters.AddWithValue("@id", idUsuario);
 
-                    return Ok(resultado);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        var resultado = new
+                        {
+                            ID_Usuario = Convert.ToInt32(reader["ID_Usuario"]),
+                            Diamantes = Convert.ToInt32(reader["Diamantes"]),
+                            Posicion = Convert.ToInt32(reader["Posicion"])
+                        };
+
+                        return Ok(resultado);
+                    }
                 }
             }
         }
+
+        return NotFound();
     }
 
-    return NotFound();
-}
 
 
 
-
-        // PUT /LiderTienda/{idUsuario}
+    // PUT /LiderTienda/{idUsuario}
     [HttpPut("{idUsuario}")]
-        public IActionResult UpdateDiamantes(
+    public IActionResult UpdateDiamantes(
             int idUsuario,
             [FromBody] LiderTienda liderBody)
+    {
+        using (var conexion = new MySqlConnection(ConnectionString))
         {
-            using (var conexion = new MySqlConnection(ConnectionString))
-            {
-                conexion.Open();
-                string update = @"
+            conexion.Open();
+            string update = @"
                     UPDATE lidertienda
                     SET Diamantes = @diamantes
                     WHERE ID_Usuario = @id";
 
-                using (var cmd = new MySqlCommand(update, conexion))
-                {
-                    cmd.Parameters.AddWithValue("@diamantes", liderBody.Diamantes);
-                    cmd.Parameters.AddWithValue("@id", idUsuario);
+            using (var cmd = new MySqlCommand(update, conexion))
+            {
+                cmd.Parameters.AddWithValue("@diamantes", liderBody.Diamantes);
+                cmd.Parameters.AddWithValue("@id", idUsuario);
 
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-                    if (filasAfectadas == 0)
-                        return NotFound();
-                }
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                if (filasAfectadas == 0)
+                    return NotFound();
             }
-
-            return NoContent();
         }
+
+        return NoContent();
     }
+}
