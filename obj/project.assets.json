@@ -2559,19 +2559,24 @@
     ]
   },
   "packageFolders": {
-    "/Users/bryanmeza/.nuget/packages/": {}
+    "C:\\Users\\karpa\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj",
+      "projectUniqueName": "C:\\Users\\karpa\\Documents\\Unity\\RetoAPIs\\ApiReto.csproj",
       "projectName": "ApiReto",
-      "projectPath": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj",
-      "packagesPath": "/Users/bryanmeza/.nuget/packages/",
-      "outputPath": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/obj/",
+      "projectPath": "C:\\Users\\karpa\\Documents\\Unity\\RetoAPIs\\ApiReto.csproj",
+      "packagesPath": "C:\\Users\\karpa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\karpa\\Documents\\Unity\\RetoAPIs\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/bryanmeza/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\karpa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -2641,7 +2646,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

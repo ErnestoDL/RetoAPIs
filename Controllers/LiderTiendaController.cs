@@ -163,4 +163,43 @@ public class LiderTiendaController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPost(Name = "AgregarLiderTienda")]
+    public void PostLiderTienda([FromBody] LiderTiendaWeb liderItem)
+    {
+        MySqlConnection conexion = new MySqlConnection(ConnectionString);
+        conexion.Open();
+
+        using (var transaction = conexion.BeginTransaction())
+        {
+            string queryUsuario = @"INSERT INTO usuario (Nombre, Usuario, Contrasena, Foto_de_Perfil, ID_Cargo, Fecha_CuentaAgregada, Idioma)
+            VALUES (@Nombre, @Usuario, @Contrasena, @Foto, 1, NOW(), 'es-MX');";
+
+            int idUsuario;
+            MySqlCommand cmdUsuario = new MySqlCommand(queryUsuario, conexion, transaction);
+            cmdUsuario.Parameters.AddWithValue("@Nombre", liderItem.Nombre);
+            cmdUsuario.Parameters.AddWithValue("@Usuario", liderItem.Usuario);
+            cmdUsuario.Parameters.AddWithValue("@Contrasena", liderItem.Contrasena);
+            cmdUsuario.Parameters.AddWithValue("@Foto", liderItem.ImagenPerfil);
+            cmdUsuario.ExecuteNonQuery();
+
+            cmdUsuario.CommandText = "SELECT LAST_INSERT_ID();";
+            cmdUsuario.Parameters.Clear();
+            idUsuario = Convert.ToInt32(cmdUsuario.ExecuteScalar());
+
+            string queryLider = @"INSERT INTO lidertienda (ID_Usuario, Apodo, Lema)
+            VALUES (@ID_Usuario, @Apodo, @Lema);";
+
+            MySqlCommand cmdLider = new MySqlCommand(queryLider, conexion, transaction);
+            cmdLider.Parameters.AddWithValue("@ID_Usuario", idUsuario);
+            cmdLider.Parameters.AddWithValue("@Apodo", liderItem.Apodo);
+            cmdLider.Parameters.AddWithValue("@Lema", liderItem.Lema);
+            cmdLider.ExecuteNonQuery();
+
+            transaction.Commit();
+        }
+
+        conexion.Close();
+    }
+
 }
