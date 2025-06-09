@@ -11,7 +11,7 @@ namespace ApiReto.Controllers;
 
 public class LiderTiendaController : ControllerBase
 {
-    public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=Hemaan,33;";
+    public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=;";
 
 
     [HttpGet("{idUsuario}")]

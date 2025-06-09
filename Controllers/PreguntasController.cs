@@ -9,7 +9,7 @@ namespace ApiReto.Controllers
     [Route("[controller]")]
     public class PreguntasController : ControllerBase
     {
-        public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=Hemaan,33;";
+        public string ConnectionString = "Server=127.0.0.1;Port=3306;Database=aventura_oxxo;Uid=root;password=;";
 
         [HttpGet("facil/{id}")]
         public ActionResult<Pregunta> GetPreguntaFacil(int id)
