@@ -129,7 +129,7 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpGet("ranking-lideres")]
-    public IEnumerable<usuario> GetRankingLideres([FromQuery] int? excludeUsuarioId = null)
+    public IEnumerable<usuario> GetRankingLideres([FromQuery] int? UsuarioId = null)
     {
         List<usuario> ranking = new List<usuario>();
 
@@ -161,7 +161,7 @@ public class UsuariosController : ControllerBase
                 {
                     int idUsuario = Convert.ToInt32(reader["ID_Usuario"]);
 
-                    if (excludeUsuarioId != null && idUsuario == excludeUsuarioId.Value)
+                    if (UsuarioId != null && idUsuario == UsuarioId.Value)
                         continue;
 
                     var lider = new usuario
@@ -171,10 +171,10 @@ public class UsuariosController : ControllerBase
                         Usuario = reader["Usuario"].ToString(),
                         Foto_de_Perfil = reader["Foto_de_Perfil"].ToString(),
                         Fecha_CuentaAgregada = Convert.ToDateTime(reader["Fecha_CuentaAgregada"]),
-                        ID_Cargo = 1, // Asumido como líder
+                        ID_Cargo = 1,
                         ID_LiderTienda = Convert.ToInt32(reader["ID_LiderTienda"]),
                         Diamantes = Convert.ToInt32(reader["Diamantes"]),
-                        Contrasena = "", // Seguridad
+                        Contrasena = "",
                         Idioma = ""
                     };
 
