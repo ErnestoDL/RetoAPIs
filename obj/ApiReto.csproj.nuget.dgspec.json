@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj": {}
+    "C:\\Users\\Andres\\RetoAPIs\\ApiReto.csproj": {}
   },
   "projects": {
-    "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj": {
+    "C:\\Users\\Andres\\RetoAPIs\\ApiReto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj",
+        "projectUniqueName": "C:\\Users\\Andres\\RetoAPIs\\ApiReto.csproj",
         "projectName": "ApiReto",
-        "projectPath": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/ApiReto.csproj",
-        "packagesPath": "/Users/bryanmeza/.nuget/packages/",
-        "outputPath": "/Users/bryanmeza/Projects/RepositoriosGitHub/RetoAPIs/obj/",
+        "projectPath": "C:\\Users\\Andres\\RetoAPIs\\ApiReto.csproj",
+        "packagesPath": "C:\\Users\\Andres\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Andres\\RetoAPIs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/bryanmeza/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Andres\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
